@@ -11,6 +11,7 @@ module.exports = {
     parameters: { type: 'string', required: true },
     shoping_centers: { type: 'string', required: true },
     roads: { type: 'string', required: true },
+    result: {type:'integer', required:false}
   },
 
 };
