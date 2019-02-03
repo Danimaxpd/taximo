@@ -7,16 +7,19 @@
  * For more information on configuring policies, check out:
  * https://sailsjs.com/docs/concepts/policies
  */
+var auth = require('http-auth');
+
+var basic = auth.basic({
+  realm: 'admin area'
+}, function (username, password, onwards) {
+  return onwards(username === 'taximo_api_user' && password === 'taximo_api_user');
+});
 
 module.exports.policies = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
-
-  // '*': true,
-
+  '*': [true],
+  // Prevent end users from doing CRUD operations on products reserved for admins
+  // (uses HTTP basic auth)
+  'synchronousshopping/*': [auth.connect(basic)],
+  // Everyone can view product pages
+  'synchronousshopping/show': [true]
 };
