@@ -8,11 +8,13 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 var auth = require('http-auth');
+var shajs = require('sha.js');
 
 var basic = auth.basic({
   realm: 'admin area'
 }, function (username, password, onwards) {
-  return onwards(username === 'taximo_api_user' && password === 'taximo_api_user');
+  var psh256 = shajs('sha256').update('taximo_api_user').digest('hex');
+  return onwards(username === 'taximo_api_user' && password === psh256);
 });
 
 module.exports.policies = {
