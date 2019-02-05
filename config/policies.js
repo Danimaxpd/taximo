@@ -22,6 +22,4 @@ module.exports.policies = {
   // Prevent end users from doing CRUD operations on products reserved for admins
   // (uses HTTP basic auth)
   'synchronousshopping/*': [auth.connect(basic)],
-  // Everyone can view product pages
-  'synchronousshopping/show': [true]
 };
