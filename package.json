@@ -18,7 +18,8 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@sailshq/eslint": "^4.19.3"
+    "@sailshq/eslint": "^4.19.3",
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
