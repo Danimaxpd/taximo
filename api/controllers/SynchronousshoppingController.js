@@ -337,11 +337,19 @@ module.exports = {
     */
     process: async function(request, response){
         request.setEncoding('ascii');
-        //Bad Request
-        if ( !_.isString( request.param('parameters') ) && !_.isString( request.param('shoping_centers') ) && !_.isString( request.param('roads') ) ) {
-            return response.badRequest('Validate your input');
+        var badr = "Validate your input";
+        //Validation data
+        if (request.param('parameters')=="" 
+        || request.param('shoping_centers') =="" 
+        || request.param('roads')=="") {
+            return response.badRequest(badr);
         }
-        //
+        if ( !_.isString( request.param('parameters') ) 
+        && !_.isString( request.param('shoping_centers') ) 
+        && !_.isString( request.param('roads') ) ) {
+            return response.badRequest(badr);
+        }
+        //variables        
         var input = '';
         var scI = '';
         var roI = '';
